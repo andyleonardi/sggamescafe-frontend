@@ -1,0 +1,9 @@
+mat-grid-tile {
+  background: lightblue;
+}
+
+.activated {
+  background: red;
+  font-weight: bold;
+  color: white;
+}

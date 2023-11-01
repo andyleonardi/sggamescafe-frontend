@@ -1,0 +1,65 @@
+<form
+  [formGroup]="formInputs"
+  class="form-page-container"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-form-field>
+    <mat-label for="ldap">ldap</mat-label>
+    <input
+      id="ldap"
+      type="text"
+      formControlName="ldap"
+      matInput
+      required
+    />
+    <mat-hint>Please input your ldap</mat-hint>
+  </mat-form-field>
+
+  <p *ngIf="formType !== 'play'" class="form-page-required-text">Required</p>
+  <div *ngIf="formType === 'borrow'" class="form-page-borrow-acknowledgement">
+    <mat-checkbox
+      formControlName="borrowAck"
+      class="form-page-checkboxes"
+      required
+    >
+      I acknowledge that I will return the games in two (2) weeks time
+    </mat-checkbox>
+    <mat-checkbox
+      formControlName="damageAck"
+      class="form-page-checkboxes"
+      required
+    >
+      I acknowledge that if any components are missing or if the game is
+      damaged, I will be liable to replace the game
+    </mat-checkbox>
+  </div>
+
+  <div *ngIf="formType === 'return'" class="form-page-return-acknowledgement">
+    <mat-checkbox
+      formControlName="returnAck"
+      class="form-page-checkboxes"
+      required
+    >
+      I acknowledge that the game is returned in good condition, with no missing
+      components
+    </mat-checkbox>
+    <p class="form-page-recommendation">Optional</p>
+    <mat-checkbox formControlName="recommended" class="form-page-checkboxes">
+      I would recommend this game to others!
+    </mat-checkbox>
+  </div>
+
+  <div *ngIf="formType === 'play'" class="form-page-play-splash">
+    <h3>Enjoy the game!</h3>
+    <p>Please remember to put the game back when you are done, thank you!</p>
+  </div>
+
+  <button
+    class="form-page-button"
+    type="submit"
+    mat-raised-button
+    color="primary"
+  >
+    {{ formType }}
+  </button>
+</form>

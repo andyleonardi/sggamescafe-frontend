@@ -1,0 +1,18 @@
+<h2>Search for fun:</h2>
+
+<div class="home-page-buttons-container">
+  <div *ngFor="let type of types" class="home-buttons">
+    <h3>
+      <a
+        class="home-button-rows"
+        mat-stroked-button
+        color="primary"
+        (click)="filterGames(type.value)"
+        [title]="type"
+        [routerLink]="['/games']"
+      >
+        > {{ type.viewValue }}
+      </a>
+    </h3>
+  </div>
+</div>

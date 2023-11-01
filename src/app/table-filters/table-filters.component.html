@@ -1,0 +1,39 @@
+<div class="table-filters">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Filters </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="formInputs">
+        <div id="game-filter-sliders">
+          <mat-label
+            >Player Count: {{ formInputs.value.playerCount }}</mat-label
+          >
+          <mat-slider [min]="minPlayer" [max]="maxPlayer" step="1" discrete>
+            <input formControlName="playerCount" matSliderThumb />
+          </mat-slider>
+        </div>
+        <div id="game-filter-sliders">
+          <mat-label>Play Time: {{ formInputs.value.playTime }}</mat-label>
+          <mat-slider [min]="minTime" [max]="maxTime" step="15" discrete>
+            <input formControlName="playTime" matSliderThumb />
+          </mat-slider>
+        </div>
+        <div id="game-filter-dropdown">
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select
+              formControlName="type"
+              (selectionChange)="applyTypeFilter($event)"
+            >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{ type.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

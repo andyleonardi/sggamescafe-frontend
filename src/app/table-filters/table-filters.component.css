@@ -1,0 +1,5 @@
+#game-filter-sliders {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}

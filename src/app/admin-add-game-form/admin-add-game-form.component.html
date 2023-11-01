@@ -1,0 +1,37 @@
+<div class="add-game-container" *ngIf="game.name !== null">
+  <mat-card>
+    <mat-card-content>
+      <h3>
+        <b>You are adding:</b>
+      </h3>
+      <h4>{{ game.name }}</h4>
+      <form (ngSubmit)="handleAdd()">
+        <p>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="selectedStatus" name="status">
+              <mat-option value="Available">Available</mat-option>
+              <mat-option value="Borrowed">Borrowed</mat-option>
+              <mat-option value="Removed">Removed</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="selectedType" name="type">
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{ type.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-raised-button color="primary">Add this game</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

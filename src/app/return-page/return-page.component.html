@@ -1,0 +1,35 @@
+<div class="return-page-container" *ngIf="gameType">
+  <h2>Thank you!</h2>
+  <h3>Please return this game to this section of the shelf:</h3>
+  <mat-grid-list class="return-page-shelf" cols="4" rowHeight="2:1">
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Two Player' }"
+      >2-Player</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Light' }" rowspan="4"
+      >Light</mat-grid-tile
+    >
+    <mat-grid-tile
+      [ngClass]="{ activated: gameType === 'Next Step' }"
+      rowspan="3"
+      >Next Step</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Heavy' }" rowspan="2"
+      >Heavy</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Abstract' }"
+      >Abstract</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Escape Games' }"
+      >Escape</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Co-op' }"
+      >Co-op</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Small Games' }"
+      >Small</mat-grid-tile
+    >
+    <mat-grid-tile [ngClass]="{ activated: gameType === 'Party' }" colspan="2"
+      >Party</mat-grid-tile
+    >
+  </mat-grid-list>
+</div>

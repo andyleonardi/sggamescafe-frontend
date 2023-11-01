@@ -1,0 +1,31 @@
+<div class="game-container" *ngIf="game">
+    <img class="game-page-img" src="{{ game.imgUrl }}" />
+    <h2>
+        You've borrowed {{ game.name }}
+    </h2>
+    <h3>
+        Please remember to return this game within two (2) weeks!
+    </h3>
+    <h3>
+        Users who borrowed this game also borrowed:
+    </h3>
+    <table mat-table [dataSource]="dataSource" class="games-list-table">
+        <ng-container matColumnDef="thumbnail">
+            <th class="games-list-thumb-cell games-list-header" mat-header-cell *matHeaderCellDef>Games</th>
+            <td class="games-list-thumb-cell" mat-cell *matCellDef="let element">
+                <img class="games-list-thumb" src={{element.imgThumb}} />
+            </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="game">
+            <th class="games-list-header" mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.name }}
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row [routerLink]="['/games', row.id]" *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

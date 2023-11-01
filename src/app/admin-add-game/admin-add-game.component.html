@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="handleSearch()">
+  <mat-form-field>
+    <input
+      type="text"
+      matInput
+      placeholder="Search Game"
+      formControlName="searchQuery"
+    />
+  </mat-form-field>
+  <button mat-raised-button id="admin-add-search-button" type="submit">Search</button>
+</form>
+
+<app-admin-add-game-form [game]="gameToBeAdded"></app-admin-add-game-form>
+
+<table *ngIf="searchResult" mat-table [dataSource]="searchResult" class="mat-elevation-z8">
+  <!-- Game Column -->
+  <ng-container matColumnDef="game">
+    <th mat-header-cell *matHeaderCellDef>Game</th>
+    <td mat-cell *matCellDef="let result">
+      <a
+        [href]="'https://boardgamegeek.com/boardgame/' + result.bggThingId"
+        target="_blank"
+      >
+        {{ result.name }}</a
+      >
+    </td>
+  </ng-container>
+
+  <!-- Add Column -->
+  <ng-container matColumnDef="add">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let result">
+      <button (click)="addGame(result)" mat-raised-button><mat-icon>add_circle_outline</mat-icon>Add</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

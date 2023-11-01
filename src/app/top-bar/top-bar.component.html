@@ -1,0 +1,9 @@
+<a [routerLink]="['/']">
+  <h1>SG Games Cafe</h1>
+</a>
+<a *ngIf="!isAdminAuth" [routerLink]="['/admin/login']">
+  <h1>Game Guides Corner</h1>
+</a>
+<a *ngIf="isAdminAuth" [routerLink]="['/admin/settings']">
+  <h1>Game Guides Corner</h1>
+</a>

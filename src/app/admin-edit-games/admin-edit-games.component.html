@@ -1,0 +1,38 @@
+<div class="edit-game-container" *ngIf="game">
+  <img class="edit-game-page-img" src="{{ game.bggImgThumb }}" />
+  <form (ngSubmit)="submitEdit()">
+    <p>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="selectedStatus" name="status">
+          <mat-option value="Available">Available</mat-option>
+          <mat-option value="Borrowed">Borrowed</mat-option>
+          <mat-option value="Removed">Removed</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="selectedType" name="type">
+          <mat-option *ngFor="let type of types" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+
+    <div class="button">
+      <button type="submit" mat-button>Submit</button>
+    </div>
+  </form>
+  <button
+    class="delete-page-button"
+    mat-raised-button
+    color="red"
+    (click)="deleteGame()"
+  >
+    Delete
+  </button>
+</div>

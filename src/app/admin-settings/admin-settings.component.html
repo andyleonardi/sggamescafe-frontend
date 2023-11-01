@@ -1,0 +1,62 @@
+<div class="admin-settings-buttons">
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/admin/addgame']"
+    >
+      > Add Game to Library
+    </a>
+  </h3>
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/games']"
+    >
+      > Games List
+    </a>
+  </h3>
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/games']"
+    >
+      > Games Currently Borrowed
+    </a>
+  </h3>
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/admin/stats']"
+    >
+      > Checkout Stats
+    </a>
+  </h3>
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/admin/password']"
+    >
+      > Change Password
+    </a>
+  </h3>
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
+      (click)="logout()"
+    >
+      > Logout
+    </a>
+  </h3>
+</div>
