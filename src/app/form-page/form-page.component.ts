@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 // import { Game, games } from 'src/games';
@@ -12,22 +12,11 @@ import { BorrowReturnService } from '../services/public/borrow-return.service';
   templateUrl: './form-page.component.html',
   styleUrls: ['./form-page.component.css'],
 })
-export class FormPageComponent implements OnInit {
+export class FormPageComponent {
   formType: string | null = '';
   gameId = this.gamesFilterService.getGameId();
-
-  formInputs = this.formBuilder.group(
-    {
-      ldap: '',
-      borrowAck: false,
-      damageAck: false,
-      returnAck: false,
-      checkoutType: '',
-      checkDate: new Date(),
-      recommended: null,
-    },
-    Validators.required
-  );
+  lastBorrower!: string | null;
+  formInputs: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +25,28 @@ export class FormPageComponent implements OnInit {
     private gamesFilterService: GamesFilterService,
     private borrowReturnService: BorrowReturnService,
     private _snackBar: MatSnackBar
-  ) {}
+  ) {
+    const routeParams = this.route.snapshot.paramMap;
+    const formTypeFromRoute = routeParams.get('formType');
+
+    this.formType = formTypeFromRoute;
+    
+    if (this.formType === 'return') {
+      this.lastBorrower = this.gamesFilterService.getLastBorrower();
+    }
+    this.formInputs = this.formBuilder.group(
+      {
+        ldap: this.lastBorrower || '',
+        borrowAck: false,
+        damageAck: false,
+        returnAck: false,
+        checkoutType: '',
+        checkDate: new Date(),
+        recommended: null,
+      },
+      Validators.required
+    );
+  }
 
   onSubmit(): void {
     this.formInputs.value.checkoutType = this.formType;
@@ -116,10 +126,15 @@ export class FormPageComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    const routeParams = this.route.snapshot.paramMap;
-    const formTypeFromRoute = routeParams.get('formType');
+  // ngOnInit() {
+  //   // const routeParams = this.route.snapshot.paramMap;
+  //   // const formTypeFromRoute = routeParams.get('formType');
 
-    this.formType = formTypeFromRoute;
-  }
+  //   // this.formType = formTypeFromRoute;
+  //   console.log(this.lastBorrower);
+  //   // if (this.formType === 'return') {
+  //   console.log(this.gameId);
+
+  //   // }
+  // }
 }

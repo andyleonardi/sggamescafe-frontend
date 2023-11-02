@@ -1,9 +1,18 @@
-<a [routerLink]="['/']">
-  <h1>SG Games Cafe</h1>
-</a>
-<a *ngIf="!isAdminAuth" [routerLink]="['/admin/login']">
-  <h1>Game Guides Corner</h1>
-</a>
-<a *ngIf="isAdminAuth" [routerLink]="['/admin/settings']">
-  <h1>Game Guides Corner</h1>
-</a>
+<div class="top-bar-container">
+  <div class="top-bar-app-title">
+    <a [routerLink]="['/']">
+      <mat-icon>casino</mat-icon>
+      <h3>Library</h3>
+    </a>
+  </div>
+  <div class="top-bar-admin-route">
+    <a *ngIf="!isAdminAuth" [routerLink]="['/admin/login']">
+      <mat-icon>account_box</mat-icon>
+      <h3>Game Guides</h3>
+    </a>
+    <a *ngIf="isAdminAuth" [routerLink]="['/admin/settings']">
+      <mat-icon>account_box</mat-icon>
+      <h3>Game Guides</h3>
+    </a>
+  </div>
+</div>

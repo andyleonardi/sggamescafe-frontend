@@ -10,6 +10,7 @@ import { gameEndpoints } from 'src/endpoints';
 export class GamesFilterService {
   gamesType: string = '';
   gameId!: string | null;
+  game: any;
 
   constructor(private http: HttpClient) {}
 
@@ -33,7 +34,25 @@ export class GamesFilterService {
     this.gameId = id;
   }
 
+  storeGame(game: any) {
+    this.game = game;
+  }
+
   getGameId() {
     return this.gameId;
+  }
+
+  getStoredGame() {
+    return this.game;
+  }
+
+  getLastBorrower() {
+    let checkouts: any[] = this.game.checkouts;
+    console.log("here's list of checkouts ", checkouts);
+    return checkouts.find(
+      (c) => c.checkoutType === 'Borrow' && c.returnDate === null
+    ).ldap;
+    // console.log(lastCheckout);
+    // return lastCheckout;
   }
 }

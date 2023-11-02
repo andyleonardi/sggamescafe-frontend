@@ -39,6 +39,7 @@ export class GamePageComponent implements OnInit {
 
   onClick(checkType: string) {
     this.gamesFilterService.storeGameId(this.gameId);
+    this.gamesFilterService.storeGame(this.game);
     if (checkType != 'edit') {
       this.router.navigate(['/form/', checkType]);
     } else {
