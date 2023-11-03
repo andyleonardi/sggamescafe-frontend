@@ -1,4 +1,4 @@
-const BACKEND_URL: string = 'https://sggamescafe-29e6fe7774f1.herokuapp.com/'; //http://localhost:8080
+const BACKEND_URL: string = 'https://sggamescafe-29e6fe7774f1.herokuapp.com'; //http://localhost:8080
 
 export const userEndpoints = {
   login: (): string => `${BACKEND_URL}/sggamescafe/api/users/login`,
